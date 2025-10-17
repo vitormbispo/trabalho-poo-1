@@ -10,11 +10,10 @@ public class DadosClientes {
         System.out.println("Cliente cadastrado com sucesso!");
     }
     
-    public static Cliente consultar(String nome) {
+    public static Cliente consultar(String cpf) {
         for(int i = 0; i < clientes.size(); i++) {
             Cliente cliente = clientes.get(i);
-            if(cliente.getNome() == nome) {
-                System.out.println(cliente.toString());
+            if(cliente.getCpf().equals(cpf)) {
                 return cliente;
             }
         }
