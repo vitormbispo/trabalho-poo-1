@@ -15,7 +15,7 @@ public class Menus {
                               1) Cadastrar cliente
                               2) Exibir clientes
                               """);
-            entrada = entradaNumerica(1,2,"Escolha uma operação");
+            entrada = entradaNumerica(1,3,"Escolha uma operação");
             switch(entrada) {
                 case 1 -> { menuCadastroCliente(); break; }
                 case 2 -> { DadosClientes.listar(); break; }
