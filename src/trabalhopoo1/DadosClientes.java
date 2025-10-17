@@ -41,6 +41,7 @@ public class DadosClientes {
     }
     
     public static void listar() {
+        System.out.println("================== Clientes ==================\n");
         for(int i = 0; i < clientes.size(); i++) {
             System.out.printf("%s - %s\n",i+1,clientes.get(i).toString());
         }
