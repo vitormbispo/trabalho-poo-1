@@ -1,7 +1,15 @@
 package trabalhopoo1;
 
 import java.util.Scanner;
+import static trabalhopoo1.DadosClientes.validarCpf;
+import static trabalhopoo1.DadosClientes.validarEmail;
+import static trabalhopoo1.DadosClientes.validarRg;
+import static trabalhopoo1.DadosClientes.validarTelefone;
 
+/**
+ * Classe para a exibição de menus.
+ * Utiliza apenas métodos estáticos.
+ */
 public class Menus {
     private static Scanner scanner = new Scanner(System.in);
     
@@ -62,14 +70,39 @@ public class Menus {
         System.out.println("\n=== Cadastrar cliente ===\n");
         System.out.print("Nome: ");
         String nome = scanner.nextLine();
+        
+        
         System.out.print("Telefone: ");
         String telefone = scanner.nextLine();
-        System.out.print("Email: ");
+        
+        while(!validarTelefone(telefone)) {
+            System.out.print("Telefone: ");
+            telefone = scanner.nextLine();
+        }
+        
+        System.out.print("E-mail: ");
         String email = scanner.nextLine();
+        
+        while(!validarEmail(email)) {
+            System.out.print("E-mail: ");
+            email = scanner.nextLine();
+        }
+        
         System.out.print("CPF: ");
         String cpf = scanner.nextLine();
+        
+        while(!validarCpf(cpf)) {
+            System.out.print("CPF: ");
+            cpf = scanner.nextLine();
+        }
+
         System.out.print("RG: ");
         String rg = scanner.nextLine();
+        
+        while(!validarRg(rg)) {
+            System.out.print("RG: ");
+            rg = scanner.nextLine();
+        }
         
         Cliente cliente = new Cliente(nome,telefone,email,rg,cpf);
         DadosClientes.cadastrar(cliente);
@@ -90,7 +123,6 @@ public class Menus {
                           -> Cadastro encontrado:
                           %s
                           """,cliente.toString());
-        
     }
     
     /**
@@ -108,14 +140,38 @@ public class Menus {
         
         System.out.print("Nome: ");
         String novoNome = scanner.nextLine();
+        
         System.out.print("Telefone: ");
         String novoTelefone = scanner.nextLine();
+        
+        while(novoTelefone != "" && !validarTelefone(novoTelefone)) {
+            System.out.print("Telefone: ");
+            novoTelefone = scanner.nextLine();
+        }
+        
         System.out.print("Email: ");
         String novoEmail = scanner.nextLine();
+        
+        while(novoEmail != "" && !validarEmail(novoEmail)) {
+            System.out.print("E-mail: ");
+            novoEmail = scanner.nextLine();
+        }
+        
         System.out.print("CPF: ");
         String novoCpf = scanner.nextLine();
+        
+        while(novoCpf != "" && !validarCpf(novoCpf)) {
+            System.out.print("CPF: ");
+            novoCpf = scanner.nextLine();
+        }
+        
         System.out.print("RG: ");
         String novoRg = scanner.nextLine();
+        
+        while(novoRg != "" && !validarRg(novoRg)) {
+            System.out.print("RG: ");
+            novoRg = scanner.nextLine();
+        }
         
         novoNome = novoNome.equals("") ? cliente.getNome() : novoNome;
         novoTelefone = novoTelefone.equals("") ? cliente.getTelefone() : novoTelefone;
@@ -138,7 +194,7 @@ public class Menus {
         
         if(cliente == null) return;
         
-        System.out.printf("Deseja remover %s? (s/n)",cliente.getNome());
+        System.out.printf("Deseja remover o cliente\"%s?\" (s/n) -> ",cliente.getNome());
         String entrada = scanner.nextLine();
         if(entrada.equalsIgnoreCase("s")) 
             DadosClientes.remover(cliente);

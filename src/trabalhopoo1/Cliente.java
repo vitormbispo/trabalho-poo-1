@@ -1,5 +1,8 @@
 package trabalhopoo1;
 
+/**
+ * Classe para objetos do tipo Cliente
+ */
 public class Cliente {
     private String nome;
     private String telefone;
@@ -66,6 +69,4 @@ public class Cliente {
         Cliente outro = (Cliente) obj;
         return this.cpf == outro.cpf;
     }
-    
-    
 }

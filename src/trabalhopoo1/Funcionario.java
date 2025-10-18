@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package trabalhopoo1;
 
 /**
- *
- * @author vitorbispo
+ * Classe para objetos do tipo Funcionario
+ * @author Vitor Bispo
  */
 public class Funcionario {
     private String nome;
