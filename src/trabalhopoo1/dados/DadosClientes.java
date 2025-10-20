@@ -1,7 +1,7 @@
-package trabalhopoo1;
+package trabalhopoo1.dados;
 
+import trabalhopoo1.entidades.Cliente;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Classe para armazenar e gerenciar os clientes
@@ -24,8 +24,7 @@ public class DadosClientes {
      * @return O objeto do cliente consultado ou {@code null} caso não seja encontrado.
      */
     public static Cliente consultar(String cpf) {
-        for(int i = 0; i < clientes.size(); i++) {
-            Cliente cliente = clientes.get(i);
+        for(Cliente cliente : clientes) {
             if(cliente.getCpf().equals(cpf)) {
                 return cliente;
             }
@@ -69,7 +68,7 @@ public class DadosClientes {
      */
     public static void listar() {
         System.out.println("================== Clientes ==================\n");
-        if(clientes.size() == 0) {
+        if(semCadastros()) {
             System.out.println("-- Nenhum cliente cadastrado --");
             return;
         }
@@ -77,6 +76,10 @@ public class DadosClientes {
         for(int i = 0; i < clientes.size(); i++) {
             System.out.printf("%s - %s\n",i+1,clientes.get(i).toString());
         }
+    }
+    
+    public static boolean semCadastros() {
+        return clientes.isEmpty();
     }
     
     // Validações
@@ -109,7 +112,9 @@ public class DadosClientes {
         
         if(emailExiste(email)) {
             System.out.println("Esse e-mail já está cadastrado!");
-        } else
+        } else if (!email.contains("@") || email.length() < 5){
+            System.out.println("E-mail inválido!");
+        }else
             valido = true;
         
         return valido;
@@ -163,7 +168,7 @@ public class DadosClientes {
      * @param cpf CPF
      * @return {@code true} se o CPF já está cadastrado.
      */
-    private static boolean cpfExiste(String cpf) {
+    public static boolean cpfExiste(String cpf) {
        for(int i = 0; i < clientes.size();i++) {
            if(clientes.get(i).getCpf().equals(cpf))
                return true;
@@ -176,7 +181,7 @@ public class DadosClientes {
      * @param rg RG
      * @return {@code true} se o RG já está cadastrado.
      */
-    private static boolean rgExiste(String rg) {
+    public static boolean rgExiste(String rg) {
        for(int i = 0; i < clientes.size();i++) {
            if(clientes.get(i).getRg().equals(rg))
                return true;
@@ -189,7 +194,7 @@ public class DadosClientes {
      * @param email email
      * @return {@code true} se o email já está cadastrado.
      */
-    private static boolean emailExiste(String email) {
+    public static boolean emailExiste(String email) {
        for(int i = 0; i < clientes.size();i++) {
            if(clientes.get(i).getEmail().equals(email))
                return true;
