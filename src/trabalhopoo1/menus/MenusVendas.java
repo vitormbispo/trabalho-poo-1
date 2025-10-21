@@ -85,7 +85,7 @@ public class MenusVendas {
             System.out.print("Nome do veículo: -> ");
             nomeVeiculo = lerTexto();
 
-            if(!DadosVeiculos.veiculoExiste(nomeVeiculo) && cpfCliente.equalsIgnoreCase("cancelar")) {
+            if(!DadosVeiculos.veiculoExiste(nomeVeiculo) && nomeVeiculo.equalsIgnoreCase("cancelar")) {
                 System.out.println("Cancelando venda...");
                 return;
             }

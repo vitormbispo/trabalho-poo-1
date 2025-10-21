@@ -87,7 +87,7 @@ public class DadosVendas {
     
     public static boolean veiculoPossuiVenda(String nome) {
         for(Venda venda : vendas) {
-            if(venda.getVeiculo().getNome().equals(nome)) {
+            if(venda.getVeiculo().getNome().equalsIgnoreCase(nome)) {
                 return true;
             }
         }
