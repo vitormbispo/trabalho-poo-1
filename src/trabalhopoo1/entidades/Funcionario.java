@@ -18,7 +18,11 @@ public class Funcionario {
         this.descFuncao = descFuncao;
         this.cargaHoraria = cargaHoraria;
     }
-
+    
+    public Funcionario clone() {
+        return new Funcionario(this.nome,this.numeroMatricula,this.qualificacao,this.descFuncao,this.cargaHoraria);
+    }
+    
     public String getNome() { return nome; }
     public int getNumeroMatricula() { return numeroMatricula; }
     public String getQualificacao() { return qualificacao; }

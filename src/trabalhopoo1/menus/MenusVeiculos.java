@@ -3,7 +3,6 @@ package trabalhopoo1.menus;
 
 import java.util.ArrayList;
 import trabalhopoo1.dados.DadosVeiculos;
-import trabalhopoo1.dados.DadosVendas;
 import trabalhopoo1.entidades.Veiculo;
 import static trabalhopoo1.menus.MenuPrincipal.lerInteiro;
 import static trabalhopoo1.menus.MenuPrincipal.lerTexto;
@@ -25,12 +24,11 @@ public class MenusVeiculos {
         System.out.print("Marca: -> ");
         String marca = lerTexto();
         
+        System.out.print("Ano (1900 +): -> ");
+        int ano = lerInteiro(1900, Integer.MAX_VALUE);
         
         System.out.print("Cor: -> ");
         String cor = lerTexto();
-        
-        System.out.print("Ano (1900 +): -> ");
-        int ano = lerInteiro(1900, Integer.MAX_VALUE);
         
         System.out.print("Número de marchas (1-30): -> ");
         int numMarchas = lerInteiro(1, 20);
@@ -103,11 +101,11 @@ public class MenusVeiculos {
         System.out.print("Marca: -> ");
         String novaMarca = lerTexto(veiculo.getMarca());
         
-        System.out.print("Cor: -> ");
-        String novaCor = lerTexto(veiculo.getCor());
-        
         System.out.print("Ano: (1900 +) -> ");
         int novoAno = lerInteiro(1900,Integer.MAX_VALUE,veiculo.getAno());
+        
+        System.out.print("Cor: -> ");
+        String novaCor = lerTexto(veiculo.getCor());
         
         System.out.print("Número de marchas: (1-20) -> ");
         int novoNumMarchas = lerInteiro(1,20,veiculo.getNumMarchas());
@@ -143,19 +141,8 @@ public class MenusVeiculos {
         
         System.out.printf("/?\\ Deseja remover o veículo \"%s\"? (s/n) -> ",veiculo.getNome());
         String entrada = lerTexto();
-        if(entrada.equalsIgnoreCase("s")) {
-            if(DadosVendas.possuiVenda(veiculo)) {
-                System.out.printf("/!\\ Remover esse veículo removerá todas as vendas atribuídas a ele, deseja prosseguir? (s/n) -> ");
-                entrada = lerTexto();
-                if(entrada.equalsIgnoreCase("s")) {
-                    DadosVendas.removerVendasAssociadas(veiculo);
-                    DadosVeiculos.remover(veiculo);
-                }
-                else
-                    System.out.println("Operação cancelada.");
-            } else
-                DadosVeiculos.remover(veiculo);
-        } 
+        if(entrada.equalsIgnoreCase("s"))
+            DadosVeiculos.remover(veiculo);  
         else 
             System.out.println("Operação cancelada.");
         

@@ -6,7 +6,6 @@ import trabalhopoo1.entidades.Venda;
 import trabalhopoo1.entidades.Veiculo;
 import trabalhopoo1.entidades.Cliente;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class DadosVendas {
@@ -36,7 +35,6 @@ public class DadosVendas {
         venda.setCliente(novoCliente);
         venda.setFuncionario(novoFuncionario);
         venda.setVeiculo(novoVeiculo);
-        System.out.println("Venda alterada com sucesso!");
     }
 
     public static void remover(Venda venda) {
@@ -60,25 +58,25 @@ public class DadosVendas {
         }
     }
     
-    public static boolean possuiVenda(Cliente cliente) {
+    public static boolean clientePossuiVenda(String cpfCliente) {
         for(Venda venda : vendas) {
-            if(venda.getCliente().equals(cliente)) {
+            if(venda.getCliente().getCpf().equals(cpfCliente)) {
                 return true;
             }
         }
         return false;
     }
     
-    public static boolean possuiVenda(Funcionario funcionario) {
+    public static boolean funcionarioPossuiVenda(int matricula) {
         for(Venda venda : vendas) {
-            if(venda.getFuncionario().equals(funcionario)) {
+            if(venda.getFuncionario().getNumeroMatricula() == matricula) {
                 return true;
             }
         }
         return false;
     }
     
-    public static boolean possuiVenda(Veiculo veiculo) {
+    public static boolean veiculoPossuiVenda(Veiculo veiculo) {
         for(Venda venda : vendas) {
             if(venda.getVeiculo().equals(veiculo)) {
                 return true;
@@ -87,42 +85,51 @@ public class DadosVendas {
         return false;
     }
     
-    public static void removerVendasAssociadas(Cliente cliente) {
-        ArrayList<Venda> aDeletar = new ArrayList<>();
+    public static boolean veiculoPossuiVenda(String nome) {
         for(Venda venda : vendas) {
-            if(venda.getCliente().equals(cliente))
-                aDeletar.add(venda);
+            if(venda.getVeiculo().getNome().equals(nome)) {
+                return true;
+            }
         }
-        
-        for(Venda venda : aDeletar)
-            vendas.remove(venda);
-        
-        System.out.printf("As vendas associadas ao cliente \"%s\" foram removidas.\n",cliente.getNome());
+        return false;
     }
     
-    public static void removerVendasAssociadas(Funcionario funcionario) {
+    /**
+     * Redireciona todas as referências das vendas a um determinado cliente para outro.
+     * @param antigo Referência substituída
+     * @param novo Nova referência
+     */
+    public static void redirecionarReferencias(Cliente antigo, Cliente novo) {
         ArrayList<Venda> aDeletar = new ArrayList<>();
         for(Venda venda : vendas) {
-            if(venda.getFuncionario().equals(funcionario))
-                aDeletar.add(venda);
+            if(venda.getCliente().equals(antigo))
+                venda.setCliente(novo);
         }
-        
-        for(Venda venda : aDeletar)
-            vendas.remove(venda);
-        
-        System.out.printf("As vendas associadas ao fncionário \"%s\" foram removidas.\n",funcionario.getNome());
     }
     
-    public static void removerVendasAssociadas(Veiculo veiculo) {
+    /**
+     * Redireciona todas as referências das vendas a um determinado funcionário para outro.
+     * @param antigo Referência substituída
+     * @param novo Nova referência
+     */
+    public static void redirecionarReferencias(Funcionario antigo, Funcionario novo) {
         ArrayList<Venda> aDeletar = new ArrayList<>();
         for(Venda venda : vendas) {
-            if(venda.getVeiculo().equals(veiculo))
-                aDeletar.add(venda);
+            if(venda.getFuncionario().equals(antigo))
+                venda.setFuncionario(novo);
         }
-        
-        for(Venda venda : aDeletar)
-            vendas.remove(venda);
-        
-        System.out.printf("As vendas associadas ao veículo \"%s\" foram removidas.\n",veiculo.nomeComposto());
+    }
+    
+    /**
+     * Redireciona todas as referências das vendas a um determinado veículo para outro.
+     * @param antigo Referência substituída
+     * @param novo Nova referência
+     */
+    public static void redirecionarReferencias(Veiculo antigo,Veiculo novo) {
+        ArrayList<Venda> aDeletar = new ArrayList<>();
+        for(Venda venda : vendas) {
+            if(venda.getVeiculo().equals(antigo))
+                venda.setVeiculo(novo);
+        }
     }
 }

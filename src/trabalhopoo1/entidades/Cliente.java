@@ -18,6 +18,10 @@ public class Cliente {
         this.cpf = cpf;
     }
     
+    public Cliente clone() {
+        return new Cliente(this.nome,this.telefone,this.email,this.rg,this.cpf);
+    }
+    
     public String getNome() { return nome; }
     public String getTelefone() { return telefone; }
     public String getEmail() { return email; }

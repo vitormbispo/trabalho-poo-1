@@ -1,7 +1,6 @@
 package trabalhopoo1.menus;
 
 import trabalhopoo1.dados.DadosFuncionarios;
-import trabalhopoo1.dados.DadosVendas;
 import trabalhopoo1.entidades.Funcionario;
 import static trabalhopoo1.menus.MenuPrincipal.lerInteiro;
 import static trabalhopoo1.menus.MenuPrincipal.lerTexto;
@@ -130,17 +129,7 @@ public class MenusFuncionarios {
         System.out.printf("/?\\ Deseja remover o funcionário \"%s\"? (s/n) -> ",funcionario.getNome());
         String entrada = lerTexto();
         if(entrada.equalsIgnoreCase("s")) {
-            if(DadosVendas.possuiVenda(funcionario)) {
-                System.out.printf("/!\\ Remover esse funcionário removerá todas as vendas atribuídas a ele, deseja prosseguir? (s/n) -> ");
-                entrada = lerTexto();
-                if(entrada.equalsIgnoreCase("s")) {
-                    DadosVendas.removerVendasAssociadas(funcionario);
-                    DadosFuncionarios.remover(funcionario);
-                }
-                else
-                    System.out.println("Operação cancelada.");
-            } else
-                DadosFuncionarios.remover(funcionario);
+            DadosFuncionarios.remover(funcionario);
         } 
         else 
             System.out.println("Operação cancelada.");

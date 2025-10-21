@@ -117,16 +117,16 @@ public class MenusVendas {
         System.out.print("CPF do cliente da venda: -> ");
         String cpfCliente = lerTexto();
         
-        if(!DadosClientes.cpfExiste(cpfCliente)) {
-            System.out.println("/!\\ Esse cliente não existe!");
+        if(!DadosVendas.clientePossuiVenda(cpfCliente)) {
+            System.out.println("-- Esse cliente não tem vendas registradas --");
             return;
         }
         
         System.out.print("Nome do veículo da venda: -> ");
         String nomeVeiculo = lerTexto();
         
-        if(!DadosVeiculos.veiculoExiste(nomeVeiculo)) {
-            System.out.println("/!\\ Esse veículo não existe!");
+        if(!DadosVendas.veiculoPossuiVenda(nomeVeiculo)) {
+            System.out.println("-- Esse veículo não tem vendas cadastradas --");
             return;
         }
         
@@ -154,16 +154,16 @@ public class MenusVendas {
         System.out.print("CPF do cliente da venda: -> ");
         String cpfCliente = lerTexto();
         
-        if(!DadosClientes.cpfExiste(cpfCliente)) {
-            System.out.println("/!\\ Esse cliente não existe!");
+        if(!DadosVendas.clientePossuiVenda(cpfCliente)) {
+            System.out.println("/!\\ Esse cliente não possui vendas!");
             return;
         }
         
         System.out.print("Nome do veículo da venda: -> ");
         String nomeVeiculo = lerTexto();
         
-        if(!DadosVeiculos.veiculoExiste(nomeVeiculo)) {
-            System.out.println("/!\\ Esse veículo não existe!");
+        if(!DadosVendas.veiculoPossuiVenda(nomeVeiculo)) {
+            System.out.println("/!\\ Esse veículo não possui vendas!");
             return;
         }
         
@@ -246,16 +246,16 @@ public class MenusVendas {
         System.out.print("CPF do cliente da venda: -> ");
         String cpfCliente = lerTexto();
         
-        if(!DadosClientes.cpfExiste(cpfCliente)) {
-            System.out.println("/!\\ Esse cliente não existe!");
+        if(!DadosVendas.clientePossuiVenda(cpfCliente)) {
+            System.out.println("/!\\ Esse cliente não possui vendas!");
             return;
         }
         
         System.out.print("Nome do veículo da venda: -> ");
         String nomeVeiculo = lerTexto();
         
-        if(!DadosVeiculos.veiculoExiste(nomeVeiculo)) {
-            System.out.println("/!\\ Esse veículo não existe!");
+        if(!DadosVendas.veiculoPossuiVenda(nomeVeiculo)) {
+            System.out.println("/!\\ Esse veículo não possui vendas!");
             return;
         }
         
@@ -265,7 +265,7 @@ public class MenusVendas {
         
         Venda venda = escolherVenda(vendas);
         
-        System.out.printf("Deseja remover a venda do cliente \"%s\" e veículo \"%s\"? (s/n) -> ",venda.getCliente().getNome(), venda.getVeiculo().nomeComposto());
+        System.out.printf("/?\\ Deseja remover a venda do cliente \"%s\" e veículo \"%s\"? (s/n) -> ",venda.getCliente().getNome(), venda.getVeiculo().nomeComposto());
         String entrada = lerTexto();
         if(entrada.equalsIgnoreCase("s")) 
             DadosVendas.remover(venda);

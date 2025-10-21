@@ -9,6 +9,7 @@ public class DadosFuncionarios {
 
     public static void cadastrar(Funcionario funcionario) {
         funcionarios.add(funcionario);
+        DadosVendas.redirecionarReferencias(funcionario, funcionario);
         System.out.println("Funcionário cadastrado com sucesso!");
     }
 
@@ -27,12 +28,17 @@ public class DadosFuncionarios {
         funcionario.setQualificacao(novaQualificacao);
         funcionario.setDescFuncao(novaDescricaoFuncao);
         funcionario.setCargaHoraria(novaCargaHoraria);
-        System.out.println("Funcionário alterado com sucesso!");
+        DadosVendas.redirecionarReferencias(funcionario, funcionario);
     }
 
     public static void remover(Funcionario funcionario) {
-        funcionarios.remove(funcionario);
-        System.out.println("Funcionário removido com sucesso!");
+        if(funcionarios.contains(funcionario)) {
+            DadosVendas.redirecionarReferencias(funcionario, funcionario.clone());
+            funcionarios.remove(funcionario);
+            System.out.println("Funcionário removido com sucesso!");
+        }
+        
+        System.out.println("Funcionário não encontrado!");
     }
 
     public static boolean semCadastros() {

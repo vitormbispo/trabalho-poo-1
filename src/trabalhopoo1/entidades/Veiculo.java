@@ -16,6 +16,10 @@ public class Veiculo {
         this.marca = marca;
         this.ano = ano;
     }
+    
+    public Veiculo clone() {
+        return new Veiculo(this.nome,this.cor,this.numMarchas,this.numPortas,this.marca,this.ano);
+    }
 
     public String getNome() { return nome; }
     public String getCor() { return cor; }
@@ -38,7 +42,7 @@ public class Veiculo {
     @Override
     public String toString() {
         return String.format("Nome: %s | Marca: %s | Ano: %s | Cor: %s | Marchas: %s | Portas: %s  ",
-                nome, marca, cor, ano, numMarchas, numPortas);
+                nome, marca, ano, cor, numMarchas, numPortas);
     }
     
     

@@ -9,10 +9,11 @@ public class DadosVeiculos {
 
     public static void cadastrar(Veiculo veiculo) {
         if(veiculoExiste(veiculo)) {
-            System.out.println("/!\\ Esse veículo estava cadastrado!");
+            System.out.println("/!\\ Esse veículo já estava cadastrado!");
             return;
         }
         veiculos.add(veiculo);
+        DadosVendas.redirecionarReferencias(veiculo, veiculo);
         System.out.println("Veículo cadastrado com sucesso!");
     }
 
@@ -31,18 +32,28 @@ public class DadosVeiculos {
     }
 
     public static void alterar(Veiculo veiculo, String novoNome, String novaCor, int novoNumMarchas, int novoNumPortas, String novaMarca, int novoAno) {
+        Veiculo checagem = new Veiculo(novoNome,novaCor,novoNumMarchas,novoNumPortas,novaMarca,novoAno);
+        if(veiculoExiste(checagem)) {
+            System.out.println("/!\\ Esse veículo já estava cadastrado!");
+            return;
+        }
         veiculo.setNome(novoNome);
         veiculo.setCor(novaCor);
         veiculo.setNumMarchas(novoNumMarchas);
         veiculo.setNumPortas(novoNumPortas);
         veiculo.setMarca(novaMarca);
         veiculo.setAno(novoAno);
-        System.out.println("Veículo alterado com sucesso!");
+        DadosVendas.redirecionarReferencias(veiculo, veiculo);
     }
 
     public static void remover(Veiculo veiculo) {
-        veiculos.remove(veiculo);
-        System.out.println("Veículo removido com sucesso!");
+        if(veiculos.contains(veiculo)) {
+            DadosVendas.redirecionarReferencias(veiculo, veiculo.clone());
+            veiculos.remove(veiculo);
+            System.out.println("Veículo removido com sucesso!");
+        } else {
+            System.out.println("Veículo não encontrado!");
+        }
     }
     
     public static void listar() {
@@ -59,13 +70,6 @@ public class DadosVeiculos {
     
     public static boolean semCadastros() {
         return veiculos.isEmpty();
-    }
-    
-    
-    public static boolean validarPlaca(String placa) {
-        String regexAntiga = "\\[A-Z]{3}[-]{1}[0-9]{4}";
-        String regexMercosul = "\\[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}";
-        return placa.matches(regexAntiga) || placa.matches(regexMercosul);
     }
     
     public static boolean veiculoExiste(Veiculo veiculo) {

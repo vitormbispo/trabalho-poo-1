@@ -15,6 +15,7 @@ public class DadosClientes {
      */
     public static void cadastrar(Cliente cliente) {
         clientes.add(cliente);
+        DadosVendas.redirecionarReferencias(cliente, cliente);
         System.out.println("Cliente cadastrado com sucesso!");
     }
     
@@ -30,7 +31,7 @@ public class DadosClientes {
             }
         }
         
-        System.out.println("Cliente não encontrado!");
+        System.out.println("/!\\Cliente não encontrado!");
         return null;
     }
     
@@ -49,6 +50,7 @@ public class DadosClientes {
         cliente.setEmail(email);
         cliente.setRg(rg);
         cliente.setCpf(cpf);
+        DadosVendas.redirecionarReferencias(cliente, cliente);
     }
     
     /**
@@ -56,7 +58,9 @@ public class DadosClientes {
      * @param cliente Cliente a ser removido
      */
     public static void remover(Cliente cliente) {
-        if(clientes.remove(cliente)) {
+        if(clientes.contains(cliente)) {
+            DadosVendas.redirecionarReferencias(cliente,cliente.clone());
+            clientes.remove(cliente);
             System.out.println("Cliente removido com sucesso.");
         } else {
             System.out.println("Cliente não encontrado!.");

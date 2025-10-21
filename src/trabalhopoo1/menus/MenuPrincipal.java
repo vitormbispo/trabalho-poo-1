@@ -1,20 +1,16 @@
 package trabalhopoo1.menus;
 
-import trabalhopoo1.dados.DadosClientes;
-import trabalhopoo1.entidades.Funcionario;
-import trabalhopoo1.entidades.Venda;
-import trabalhopoo1.entidades.Veiculo;
-import trabalhopoo1.entidades.Cliente;
 import java.util.Scanner;
+
+import trabalhopoo1.dados.DadosClientes;
+import trabalhopoo1.dados.DadosFuncionarios;
+import trabalhopoo1.dados.DadosVeiculos;
+import trabalhopoo1.dados.DadosVendas;
 
 import static trabalhopoo1.menus.MenusClientes.*;
 import static trabalhopoo1.menus.MenusFuncionarios.*;
 import static trabalhopoo1.menus.MenusVeiculos.*;
 import static trabalhopoo1.menus.MenusVendas.*;
-
-import trabalhopoo1.dados.DadosFuncionarios;
-import trabalhopoo1.dados.DadosVeiculos;
-import trabalhopoo1.dados.DadosVendas;
 
 /**
  * Classe para a exibição de menus.
@@ -93,6 +89,7 @@ public class MenuPrincipal {
                 case 20 -> { DadosVendas.listar(); pausa(); }
                 case 21 -> {
                     System.out.println("Saindo...");
+                    scanner.close();
                     return;
                 }
             }
@@ -146,7 +143,7 @@ public class MenuPrincipal {
                 continue;
             }
             if(escolhido < min || escolhido > max) {
-                System.out.print("/!\\ Entrada inválida! Tente novamente ->");
+                System.out.print("/!\\ Entrada inválida! Tente novamente -> ");
             }
         } while(escolhido < min || escolhido > max);
         

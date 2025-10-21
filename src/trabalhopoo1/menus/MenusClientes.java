@@ -5,7 +5,6 @@ import static trabalhopoo1.dados.DadosClientes.validarCpf;
 import static trabalhopoo1.dados.DadosClientes.validarEmail;
 import static trabalhopoo1.dados.DadosClientes.validarRg;
 import static trabalhopoo1.dados.DadosClientes.validarTelefone;
-import trabalhopoo1.dados.DadosVendas;
 import static trabalhopoo1.menus.MenuPrincipal.lerTexto;
 import trabalhopoo1.entidades.Cliente;
 
@@ -170,21 +169,11 @@ public class MenusClientes {
         
         if(cliente == null) return;
         
-        System.out.printf("/?\\Deseja remover o cliente \"%s?\" (s/n) -> ",cliente.getNome());
+        System.out.printf("/?\\ Deseja remover o cliente \"%s?\" (s/n) -> ",cliente.getNome());
         String entrada = lerTexto();
-        if(entrada.equalsIgnoreCase("s")) {
-            if(DadosVendas.possuiVenda(cliente)) {
-                System.out.printf("/!\\ Remover esse cliente removerá todas as vendas atribuídas a ele, deseja prosseguir? (s/n) -> ",cliente.getNome());
-                entrada = lerTexto();
-                if(entrada.equalsIgnoreCase("s")) {
-                    DadosVendas.removerVendasAssociadas(cliente);
-                    DadosClientes.remover(cliente);
-                }
-                else
-                    System.out.println("Operação cancelada.");
-            } else
-                DadosClientes.remover(cliente);
-        } 
+        
+        if(entrada.equalsIgnoreCase("s"))
+           DadosClientes.remover(cliente);
         else 
             System.out.println("Operação cancelada.");
     }
