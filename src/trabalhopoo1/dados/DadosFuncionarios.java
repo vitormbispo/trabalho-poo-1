@@ -58,8 +58,8 @@ public class DadosFuncionarios {
             funcionarios.remove(funcionario);
             System.out.println("Funcionário removido com sucesso!");
         }
-        
-        System.out.println("Funcionário não encontrado!");
+        else
+            System.out.println("Funcionário não encontrado!");
     }
     
     /**

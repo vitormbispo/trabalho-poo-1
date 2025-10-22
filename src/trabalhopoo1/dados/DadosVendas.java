@@ -63,8 +63,11 @@ public class DadosVendas {
      * @param venda Venda a ser removida
      */
     public static void remover(Venda venda) {
-        vendas.remove(venda);
-        System.out.println("Venda removida com sucesso!");
+        if(vendas.contains(venda)) {
+            vendas.remove(venda);
+            System.out.println("Venda removida com sucesso!");
+        } else
+            System.out.println("Venda não encontrada!");
     }
     
      /**

@@ -62,9 +62,9 @@ public class DadosClientes {
             DadosVendas.redirecionarReferencias(cliente,cliente.clone());
             clientes.remove(cliente);
             System.out.println("Cliente removido com sucesso.");
-        } else {
+        } else
             System.out.println("Cliente não encontrado!.");
-        }
+        
     }
     
     /**

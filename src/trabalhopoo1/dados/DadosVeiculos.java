@@ -69,9 +69,9 @@ public class DadosVeiculos {
             DadosVendas.redirecionarReferencias(veiculo, veiculo.clone());
             veiculos.remove(veiculo);
             System.out.println("Veículo removido com sucesso!");
-        } else {
+        } else
             System.out.println("Veículo não encontrado!");
-        }
+        
     }
     
     /**
