@@ -82,6 +82,10 @@ public class DadosClientes {
         }
     }
     
+    /**
+     * Verifica se não existe nenhum cliente cadastrado
+     * @return {@code true} se não hover nenhum cliente cadastrado.
+     */
     public static boolean semCadastros() {
         return clientes.isEmpty();
     }

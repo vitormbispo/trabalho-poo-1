@@ -147,7 +147,7 @@ public class MenusVendas {
         System.out.println("\n=== Alterar venda ===\n");
         
         if(DadosVendas.semCadastros()) {
-            System.out.println("-- Nenhuma venda cadastrada --");
+            System.out.println("/!\\ Nenhuma venda para remover!");
             return;
         }
         
@@ -201,7 +201,7 @@ public class MenusVendas {
         
         Funcionario novoFuncionario = DadosFuncionarios.consultar(novaMatricula);
         
-        System.out.print("Novo nome do veículo: ");
+        System.out.print("Novo nome/chassi do veículo: ");
         String novoNomeVeiculo = lerTexto(venda.getVeiculo().getNome());
         
         while(!DadosVeiculos.veiculoExiste(novoNomeVeiculo) && !DadosVeiculos.chassiExiste(novoNomeVeiculo)) {
@@ -239,7 +239,7 @@ public class MenusVendas {
     protected static void menuRemocaoVenda() {
         System.out.println("\n=== Remover venda ===\n");
         if(DadosVendas.semCadastros()) {
-            System.out.println("-- Nenhuma venda cadastrada --");
+            System.out.println("/!\\ Nenhuma venda para remover!");
             return;
         }
         

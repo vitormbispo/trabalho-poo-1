@@ -85,6 +85,11 @@ public class DadosFuncionarios {
         }
     }
     
+    /**
+     * Verifica se uma determinada matrícula está cadastrada
+     * @param matricula Matrícula do funcionário
+     * @return {@code true} se houver algum funcionário com essa matrícula.
+     */
     public static boolean matriculaExiste(int matricula) {
         for(Funcionario funcionario : funcionarios) {
             if(funcionario.getNumeroMatricula() == matricula)

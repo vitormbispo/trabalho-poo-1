@@ -103,6 +103,7 @@ public class MenusFuncionarios {
         int novaCargaHoraria = lerInteiro(1,44,funcionario.getCargaHoraria());
         
         DadosFuncionarios.alterar(funcionario, novoNome, novaQualificacao, novaDescricaoFuncao, novaCargaHoraria);
+        System.out.println("Dados cadastrais atualizados!");
     }
     
     /**

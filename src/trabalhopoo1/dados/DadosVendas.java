@@ -133,13 +133,13 @@ public class DadosVendas {
     }
     
     /**
-     * Verifica se existe alguma venda cadastrada com um veículo de determinado nome
-     * @param veiculo Nome do veículo
+     * Verifica se existe alguma venda cadastrada com um veículo de determinado nome ou chassi
+     * @param veiculo Nome ou chassi do veículo
      * @return {@code true} se houver pelo menos uma venda cadastrada com esse nome de veículo
      */
     public static boolean veiculoPossuiVenda(String nome) {
         for(Venda venda : vendas) {
-            if(venda.getVeiculo().getNome().equalsIgnoreCase(nome)) {
+            if(venda.getVeiculo().getNome().equalsIgnoreCase(nome) || venda.getVeiculo().getChassi().equalsIgnoreCase(nome)) {
                 return true;
             }
         }
@@ -152,7 +152,6 @@ public class DadosVendas {
      * @param novo Nova referência
      */
     public static void redirecionarReferencias(Cliente antigo, Cliente novo) {
-        ArrayList<Venda> aDeletar = new ArrayList<>();
         for(Venda venda : vendas) {
             if(venda.getCliente().equals(antigo))
                 venda.setCliente(novo);
@@ -165,7 +164,6 @@ public class DadosVendas {
      * @param novo Nova referência
      */
     public static void redirecionarReferencias(Funcionario antigo, Funcionario novo) {
-        ArrayList<Venda> aDeletar = new ArrayList<>();
         for(Venda venda : vendas) {
             if(venda.getFuncionario().equals(antigo))
                 venda.setFuncionario(novo);
@@ -178,7 +176,6 @@ public class DadosVendas {
      * @param novo Nova referência
      */
     public static void redirecionarReferencias(Veiculo antigo,Veiculo novo) {
-        ArrayList<Venda> aDeletar = new ArrayList<>();
         for(Venda venda : vendas) {
             if(venda.getVeiculo().equals(antigo))
                 venda.setVeiculo(novo);
