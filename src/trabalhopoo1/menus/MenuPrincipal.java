@@ -240,6 +240,9 @@ public class MenuPrincipal {
         return escolhido;
     }
     
+    /**
+     * Faz uma pausa na saída do terminal até a confirmação do usuário.
+     */
     protected static void pausa() {
         System.out.print("\nPressione ENTER para continuar...");
         scanner.nextLine();

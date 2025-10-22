@@ -11,15 +11,27 @@ import java.util.List;
 public class DadosVendas {
     private static final List<Venda> vendas = new ArrayList<>();
 
+    /**
+     * Cadastra uma nova venda
+     * @param venda Venda a cadastrar
+     */
     public static void cadastrar(Venda venda) {
         vendas.add(venda);
         System.out.println("Venda cadastrada com sucesso!");
     }
 
+    /**
+     * Consulta por uma venda através do CPF do cliente e do nome/chassi do veículo
+     * @param cpfCliente CPF do cliente
+     * @param nomeVeiculo Nome/chassi do veículo
+     * @return 
+     */
     public static ArrayList<Venda> consultar(String cpfCliente, String nomeVeiculo) {
         ArrayList<Venda> encontradas = new ArrayList<>();
         for (Venda venda : vendas) {
-            if (venda.getCliente().getCpf().equals(cpfCliente) && venda.getVeiculo().getNome().equalsIgnoreCase(nomeVeiculo)) {
+            if (venda.getCliente().getCpf().equals(cpfCliente) && 
+                    (venda.getVeiculo().getNome().equalsIgnoreCase(nomeVeiculo) || 
+                    venda.getVeiculo().getChassi().equalsIgnoreCase(nomeVeiculo))) {
                 encontradas.add(venda);
             }
         }
@@ -28,7 +40,16 @@ public class DadosVendas {
         }
         return encontradas;
     }
-
+    
+    /**
+     * Altera os dados de uma venda
+     * @param venda Venda atualizada
+     * @param data Data atualizada
+     * @param novoValor Valor atualizado
+     * @param novoCliente Cliente atualizado
+     * @param novoFuncionario Funcionario atualizado
+     * @param novoVeiculo Veiculo atualizado
+     */
     public static void alterar(Venda venda, LocalDate data, double novoValor, Cliente novoCliente, Funcionario novoFuncionario, Veiculo novoVeiculo) {
         venda.setData(data);
         venda.setValor(novoValor);
@@ -37,17 +58,28 @@ public class DadosVendas {
         venda.setVeiculo(novoVeiculo);
     }
 
+    /**
+     * Remove a venda
+     * @param venda Venda a ser removida
+     */
     public static void remover(Venda venda) {
         vendas.remove(venda);
         System.out.println("Venda removida com sucesso!");
     }
-
+    
+     /**
+     * Verifica se não há cadastros de vendas
+     * @return {@code true} se nenhuma venda foi cadastrada.
+     */
     public static boolean semCadastros() {
         return vendas.isEmpty();
     }
     
+    /**
+     * Lista todas as vendas
+     */
     public static void listar() {
-        System.out.println("================== Vendas ==================\n");
+        System.out.println("\n================== Vendas ==================\n");
         if(vendas.size() == 0) {
             System.out.println("-- Nenhuma venda cadastrada --");
             return;
@@ -58,6 +90,11 @@ public class DadosVendas {
         }
     }
     
+    /**
+     * Verifica se determinado cliente possui alguma venda cadastrada
+     * @param cpfCliente CPF do cliente
+     * @return {@code true} se houver pelo menos uma venda cadastrada com esse cliente
+     */
     public static boolean clientePossuiVenda(String cpfCliente) {
         for(Venda venda : vendas) {
             if(venda.getCliente().getCpf().equals(cpfCliente)) {
@@ -67,6 +104,11 @@ public class DadosVendas {
         return false;
     }
     
+    /**
+     * Verifica se determinado funcionário possui alguma venda cadastrada
+     * @param matricula Nº Matrícula do funcionário
+     * @return {@code true} se houver pelo menos uma venda cadastrada com esse funcionário
+     */
     public static boolean funcionarioPossuiVenda(int matricula) {
         for(Venda venda : vendas) {
             if(venda.getFuncionario().getNumeroMatricula() == matricula) {
@@ -76,6 +118,11 @@ public class DadosVendas {
         return false;
     }
     
+    /**
+     * Verifica se determinado veículo possui alguma venda cadastrada
+     * @param veiculo Veiculo a verificar
+     * @return {@code true} se houver pelo menos uma venda cadastrada com esse veículo
+     */
     public static boolean veiculoPossuiVenda(Veiculo veiculo) {
         for(Venda venda : vendas) {
             if(venda.getVeiculo().equals(veiculo)) {
@@ -85,6 +132,11 @@ public class DadosVendas {
         return false;
     }
     
+    /**
+     * Verifica se existe alguma venda cadastrada com um veículo de determinado nome
+     * @param veiculo Nome do veículo
+     * @return {@code true} se houver pelo menos uma venda cadastrada com esse nome de veículo
+     */
     public static boolean veiculoPossuiVenda(String nome) {
         for(Venda venda : vendas) {
             if(venda.getVeiculo().getNome().equalsIgnoreCase(nome)) {

@@ -71,7 +71,7 @@ public class DadosClientes {
      * Lista todos os clientes cadastrados.
      */
     public static void listar() {
-        System.out.println("================== Clientes ==================\n");
+        System.out.println("\n================== Clientes ==================\n");
         if(semCadastros()) {
             System.out.println("-- Nenhum cliente cadastrado --");
             return;

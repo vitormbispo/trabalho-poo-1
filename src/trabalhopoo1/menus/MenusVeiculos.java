@@ -30,13 +30,23 @@ public class MenusVeiculos {
         System.out.print("Cor: -> ");
         String cor = lerTexto();
         
-        System.out.print("Número de marchas (1-30): -> ");
+        System.out.print("Número de marchas (1-20): -> ");
         int numMarchas = lerInteiro(1, 20);
         
-        System.out.print("Número de portas (1-10): -> ");
+        System.out.print("Número de portas (1-5): -> ");
         int numPortas = lerInteiro(1, 5);
         
-        Veiculo veiculo = new Veiculo(nome, cor, numMarchas, numPortas, marca, ano);
+        
+        System.out.print("Nº Chassi: -> ");
+        String chassi = lerTexto();
+        
+        while(DadosVeiculos.chassiExiste(chassi)) {
+            System.out.println("/!\\ Esse chassi já foi cadastrado!");
+            System.out.print("Nº Chassi: -> ");
+            chassi = lerTexto();
+        }
+        
+        Veiculo veiculo = new Veiculo(nome, cor, numMarchas, numPortas, marca, ano, chassi);
         DadosVeiculos.cadastrar(veiculo);
         
     }
@@ -52,10 +62,10 @@ public class MenusVeiculos {
             return;
         }
         
-        System.out.print("Insira o nome do veículo: -> ");
+        System.out.print("Insira o nome ou chassi do veículo: -> ");
         String nome = lerTexto();
         
-        if(!DadosVeiculos.veiculoExiste(nome)) {
+        if(!DadosVeiculos.veiculoExiste(nome) && !DadosVeiculos.chassiExiste(nome)) {
             System.out.println("/!\\ Esse veículo não existe!");
             return;
         }
@@ -81,10 +91,10 @@ public class MenusVeiculos {
             return;
         }
         
-        System.out.print("Insira o nome do veículo a ser alterado: -> ");
+        System.out.print("Insira o nome ou chassi do veículo a ser alterado: -> ");
         String nome = lerTexto();
         
-        if(!DadosVeiculos.veiculoExiste(nome)) {
+        if(!DadosVeiculos.veiculoExiste(nome) && !DadosVeiculos.chassiExiste(nome)) {
             System.out.println("/!\\ Esse veículo não existe!");
             return;
         }
@@ -129,17 +139,17 @@ public class MenusVeiculos {
             return;
         }
         
-        System.out.print("Insira o nome do veículo a ser removido: -> ");
+        System.out.print("Insira o nome ou chassi do veículo a ser removido: -> ");
         String nome = lerTexto();
         
-        if(!DadosVeiculos.veiculoExiste(nome)) {
+        if(!DadosVeiculos.veiculoExiste(nome) && !DadosVeiculos.chassiExiste(nome)) {
             System.out.println("/!\\ Esse veículo não existe!");
             return;
         }
         
         Veiculo veiculo = escolherVeiculo(nome);
         
-        System.out.printf("/?\\ Deseja remover o veículo \"%s\"? (s/n) -> ",veiculo.getNome());
+        System.out.printf("/?\\ Deseja remover o veículo \"%s\"? (s/n) -> ",veiculo.nomeComposto());
         String entrada = lerTexto();
         if(entrada.equalsIgnoreCase("s"))
             DadosVeiculos.remover(veiculo);  

@@ -76,16 +76,16 @@ public class MenusVendas {
             }
         }
               
-        System.out.print("Nome do veículo: -> ");
+        System.out.print("Nome ou chassi do veículo: -> ");
         String nomeVeiculo = lerTexto();
         
-        while (!DadosVeiculos.veiculoExiste(nomeVeiculo)) {
+        while (!DadosVeiculos.veiculoExiste(nomeVeiculo) && !DadosVeiculos.chassiExiste(nomeVeiculo)) {
             System.out.println("/!\\ Veículo não encontrado! Tente novamente");
             System.out.println("/?\\ Digite \"cancelar\" para cancelar a venda.");
             System.out.print("Nome do veículo: -> ");
             nomeVeiculo = lerTexto();
 
-            if(!DadosVeiculos.veiculoExiste(nomeVeiculo) && nomeVeiculo.equalsIgnoreCase("cancelar")) {
+            if(!DadosVeiculos.veiculoExiste(nomeVeiculo) && !DadosVeiculos.chassiExiste(nomeVeiculo) && nomeVeiculo.equalsIgnoreCase("cancelar")) {
                 System.out.println("Cancelando venda...");
                 return;
             }
@@ -122,7 +122,7 @@ public class MenusVendas {
             return;
         }
         
-        System.out.print("Nome do veículo da venda: -> ");
+        System.out.print("Nome ou chassi do veículo da venda: -> ");
         String nomeVeiculo = lerTexto();
         
         if(!DadosVendas.veiculoPossuiVenda(nomeVeiculo)) {
@@ -159,7 +159,7 @@ public class MenusVendas {
             return;
         }
         
-        System.out.print("Nome do veículo da venda: -> ");
+        System.out.print("Nome ou chassi do veículo da venda: -> ");
         String nomeVeiculo = lerTexto();
         
         if(!DadosVendas.veiculoPossuiVenda(nomeVeiculo)) {
@@ -204,7 +204,7 @@ public class MenusVendas {
         System.out.print("Novo nome do veículo: ");
         String novoNomeVeiculo = lerTexto(venda.getVeiculo().getNome());
         
-        while(!DadosVeiculos.veiculoExiste(novoNomeVeiculo)) {
+        while(!DadosVeiculos.veiculoExiste(novoNomeVeiculo) && !DadosVeiculos.chassiExiste(novoNomeVeiculo)) {
             System.out.println("/!\\ Esse veículo não existe! Tente novamente.");
             System.out.print("Novo nome do veículo: ");
             novoNomeVeiculo = lerTexto(venda.getVeiculo().getNome());
@@ -251,7 +251,7 @@ public class MenusVendas {
             return;
         }
         
-        System.out.print("Nome do veículo da venda: -> ");
+        System.out.print("Nome ou chassi do veículo da venda: -> ");
         String nomeVeiculo = lerTexto();
         
         if(!DadosVendas.veiculoPossuiVenda(nomeVeiculo)) {
